@@ -193,7 +193,9 @@ public static void admin(String id,String A)
         case 1:
         {
             System.out.println("Enter the customer id you wanna know about...");
-            id_inp=in_ad.nextLine();
+            Scanner in_adm = new Scanner(System.in);
+            
+            id_inp=in_adm.nextLine();
             if(id_inp.equals(id))
             {
                 System.out.println("The customer id is: "+id_inp+" customer name is: "+A);
