@@ -1,0 +1,237 @@
+import java.util.*;
+class Acc
+{
+    String cus_name_1="/*name*/";
+    String cus_id="/*id*/";
+    int cus_pass_1=/*cus pass*/;
+    String admin_name="/*admin name*/";
+    int admin_pass=/*admin pass*/;
+}
+class Main extends Acc
+{
+
+
+    //main()
+    public static void main(String[] args) {
+        Acc obj = new Acc();
+         String id=obj.cus_id;
+        String A=obj.cus_name_1;
+
+        int B=obj.cus_pass_1;
+        String fnl_model="";
+        String fnl_product="";
+        int fnl_offer;
+        String add;
+
+    Scanner in = new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        String name=in.nextLine();
+        System.out.print("Enter password: ");
+        int pass=in.nextInt();
+        if(name.equals(obj.cus_name_1)&&pass==obj.cus_pass_1)
+        {
+            System.out.println("Welcome "+A);
+            fnl_product=main_page();
+            fnl_model=model();
+            fnl_offer=offer_product(fnl_product);
+            int bill=billing(fnl_product,fnl_model,fnl_offer);
+            System.out.println(bill);
+            System.out.println("Wanna proceed to checkout?..if yes type y else n");
+            Scanner in_choice = new Scanner(System.in);
+            String choice=in_choice.nextLine();
+            if (choice.equals("y"))
+            {
+                Scanner in_add = new Scanner(System.in);
+                System.out.println("Enter your valid address...");
+                add=in_add.nextLine();
+                System.out.println("Your order of "+fnl_product+" model no: "+fnl_model+" of Rs."+bill+" would be arrived within 2 days of address\n"+add);
+                System.out.println("Thanks for ordering...");
+            }
+            else
+            {
+                System.out.println("Thank you ");
+            }
+        }
+        else if(name.equals(obj.admin_name)&&pass== obj.admin_pass)
+        {
+            admin(id,A);
+        }
+        else{
+            System.out.println("Invalid password.. please check...");
+
+        }
+
+    }
+
+    //producting page
+    public static String main_page()
+    {
+        System.out.println("Here's the menu of products..");
+        int choice_prod=0;
+
+        String product="";
+        System.out.println("\n1.football\n2.baseball\n3.volleyball\n4.shuttle");
+        System.out.println("Enter the product number..");
+        Scanner in = new Scanner(System.in);
+        choice_prod=in.nextInt();
+        switch(choice_prod)
+        {
+            case 1:
+            {
+               product= "football";
+
+                break;
+            }
+            case 2:
+            {
+                product="baseball";
+
+                break;
+            }
+            case 3:
+            {
+                product="volleyball";
+
+                break;
+            }
+            case 4:
+            {
+                product="shuttle";
+
+                break;
+            }
+        }//end of switch
+        return product ;
+
+    }
+
+    //modelling page
+    public static String model()
+    {
+        System.out.println("\n1.model 1\n2.model 2\n3.model 3\n4.model 4");
+        int choice_model=0;
+        String model="";
+        System.out.println("Give the model number..");
+        Scanner in =new Scanner(System.in);
+        choice_model=in.nextInt();
+        switch(choice_model)
+        {
+            case 1:
+            {
+                model="model 1";
+                break;
+            }
+            case 2:
+            {
+                model="model 2";
+                break;
+            }
+            case 3:
+            {
+                model="model 3";
+                break;
+            }
+            case 4:
+            {
+                model="model 4";
+            }
+    }//end of switch
+    return model;
+}
+//offer_product
+public static int offer_product(String fnl_product)
+{
+    int offer_=0;
+    if (fnl_product.equals("football"))
+    {
+        offer_=20;
+    }
+    if (fnl_product.equals("baseball"))
+    {
+        offer_=30;
+    }
+    if (fnl_product.equals("volleyball"))
+    {
+        offer_=50;
+    }
+    if (fnl_product.equals("shuttle"))
+    {
+        offer_=25;
+    }
+    return offer_;
+}
+public static int billing(String prod,String mod,int off)
+{
+    int amt=0;
+    if(prod.equals("football"))
+    {amt=500;}
+    if(prod.equals("baseball"))
+    {amt=300;}
+    if(prod.equals("volleyball"))
+    {amt=500;}
+    if(prod.equals("shuttle"))
+    {amt=200;}
+    System.out.println("offer applied for "+prod+" of offer "+off+"%");
+    return offer(amt,off);
+
+}
+public static int offer(int amt,int off)
+{
+    return amt-(amt/100)*off;
+}
+public static void admin(String id,String A)
+{
+    String id_inp;
+    System.out.println("Welcome admin...");
+    System.out.println("Admin Features available...\n1.find customer..\n2.products..");
+    System.out.println("Enter the details you wanna know about...");
+    Scanner in_ad = new Scanner(System.in);
+    int choice_ad=in_ad.nextInt();
+    switch(choice_ad)
+    {
+        case 1:
+        {
+            System.out.println("Enter the customer id you wanna know about...");
+            id_inp=in_ad.nextLine();
+            if(id_inp.equals(id))
+            {
+                System.out.println("The customer id is: "+id_inp+" customer name is: "+A);
+            }
+            else
+            {
+                System.out.println("Invalid id..");
+            }
+            break;
+        }
+        case 2:
+        {
+            Scanner in_pro = new Scanner(System.in);
+            int chce= in_pro.nextInt();
+            System.out.println("\n1.model 1\n2.model 2\n3.model 3\n4.model 4");
+            switch(chce)
+            {
+                case 1: {
+                    System.out.println("football");
+                    break;
+                }
+                case 2: {
+                    System.out.println("baseball");
+                }
+                case 3:
+                {
+                    System.out.println("volleyball");
+                }
+                case 4:
+                {
+                    System.out.println("shuttle");
+                }
+            }
+            break;
+        }
+    }
+
+}
+
+//end of class
+ }
